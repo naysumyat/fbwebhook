@@ -1,5 +1,5 @@
 
-export function handleMessage(sender_psid, received_message) {
+module.exports = function handleMessage(sender_psid, received_message) {
     let response;
     
     // Checks if the message contains text
@@ -44,7 +44,7 @@ export function handleMessage(sender_psid, received_message) {
   }
   
   
-  export function handlePostback(sender_psid, received_postback) {
+  module.exports = function handlePostback(sender_psid, received_postback) {
    // console.log('ok')
      let response;
     // Get the payload for the postback
@@ -61,7 +61,7 @@ export function handleMessage(sender_psid, received_message) {
   }
   
   
- export function callSendAPI(sender_psid, response) {
+  module.exports = function callSendAPI(sender_psid, response) {
     // Construct the message body
     let request_body = {
       "recipient": {

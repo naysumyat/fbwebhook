@@ -51,6 +51,7 @@ router.post('/webhook', (req, res, next) => {
 
 });
 
+
 // Accepts GET requests at the /webhook endpoint
 router.get('/webhook', (req, res) => {
   
@@ -78,6 +79,7 @@ router.get('/webhook', (req, res) => {
     }
   }
 });
+
 
 function handleMessage(sender_psid, received_message) {
   let response;
@@ -123,6 +125,7 @@ function handleMessage(sender_psid, received_message) {
   callSendAPI(sender_psid, response);    
 }
 
+
 function handlePostback(sender_psid, received_postback) {
   console.log('ok')
    let response;
@@ -138,6 +141,7 @@ function handlePostback(sender_psid, received_postback) {
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
+
 
 function callSendAPI(sender_psid, response) {
   // Construct the message body

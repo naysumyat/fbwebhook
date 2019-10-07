@@ -37,6 +37,7 @@ module.exports = function handleMessage(sender_psid, received_message) {
           }
         }
       }
+
     } 
     
     // Send the response message
@@ -49,13 +50,45 @@ module.exports = function handleMessage(sender_psid, received_message) {
      let response;
     // Get the payload for the postback
     let payload = received_postback.payload;
-  
-    // Set the response based on the postback payload
-    if (payload === 'yes') {
-      response = { "text": "Thanks!" }
-    } else if (payload === 'no') {
-      response = { "text": "Oops, try sending another image." }
+     
+      // Set the response based on the postback payload
+    switch(payload){
+        case "GET_STARTED":
+            // show welcome message + set persistent menu
+                response = { "text": "Mingalarpar . Welcome to The Assistant Bot.I am the automatic chatbot and I am here to assist you with anything you would like to know about ...."}
+            break;
+        case "HOME":
+                response = {
+                    "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type":"button",
+                        "text":"This is sample home menu text.",
+                        "buttons":[{
+                                      "type": "postback",
+                                      "title": "Option 1",
+                                      "payload": "OPTION_1",
+                                   },
+                                   {
+                                    "type": "postback",
+                                    "title": "Option 2",
+                                    "payload": "OPTION_2",
+                                   }]
+                      }
+                    }
+                }
+            break;
+        case "yes":
+                response = { "text": "Thanks!" }
+            break;
+        case "no":
+                response = { "text": "Oops, try sending another image." }
+            break;
+        default:
+                response = { "text": "Sorry, I don't get it." }
+        break;
     }
+  
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
   }

@@ -15,8 +15,6 @@ router.get('/', function(req, res, next) {
 // Accepts GET requests at the /webhook endpoint
 router.get('/webhook', (req, res) => {
   
-
-  
   // Parse params from the webhook verification request
   let mode = req.query['hub.mode'];
   let token = req.query['hub.verify_token'];
@@ -87,9 +85,6 @@ router.post('/webhook', (req, res, next) => {
   }
 
 });
-
-
-
 
 
 
